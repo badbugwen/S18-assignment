@@ -15,6 +15,8 @@
   var span = document.createElement("span"); //To-do Span
   var replaceButton = document.createElement("button"); //To-Do replace button
   var removeButton = document.createElement("button"); //To-Do remove button
+  var enmergency = document.getElementById("enmergency");
+  var normal = document.getElementById("normal");
 
   function createToDo() {
     // Create to-do span
@@ -24,7 +26,10 @@
       input = "沒事找事" || "閒得蛋疼";
     }
     span.innerHTML = input;
+    span.style.color = document.getElementById("enmergency").checked? "red":"green";
     todo.appendChild(span);
+
+   
 
     //Create replace button
     //判斷與設定relplace button文字內容、作為to-do的child生成
@@ -63,6 +68,11 @@
   <div class="container">
     <input type="text" id="input">
     <button onclick="createToDo()"> + </button>
+    <form>
+      <input type="radio" name="state" id="enmergency" checked>緊急
+      <input type="radio" name="state" id="nromal" >不緊急
+    </form>
+    
     <div id="todolist"></div>
   </div>
 </body>
