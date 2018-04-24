@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script>
+  "use strick"
+  var state = true;
+
+  function toggleLight() {
+    var image = document.getElementById("image");   
+    state = !state;
+    image.src = state ? "img/off.jpg":"img/on.jpg";    
+  }
+
+  var timeLeft = 5;
+
+  function countDownTimer() {
+    timeLeft = timeLeft - 1;
+    if (timeLeft <= 0) {
+      state = true;
+      document.getElementById("image").src = "img/off.jpg";
+      clearInterval(id);
+    }
+    document.getElementById("timer").innerHTML = timeLeft;
+  }
+  var id = setInterval(countDownTimer, 1000);
+
+
+  
+  function timeSet() {
+    var setting = document.getElementById("setting").value;
+    if (setting == "") {
+      alert("沒有輸入預約關燈秒數，發出警告!");
+    } else if (isNaN(setting)) {
+      alert("預約關燈需輸入數字，發出警告!");
+    } else if (setting <= 0) {
+      alert("預約關燈時間不可為負數，發出警告!");
+    } else {
+      timeLeft = parseInt(setting);
+      document.getElementById("timer").innerHTML = timeLeft;
+      clearInterval(id);
+      id = setInterval(countDownTimer, 1000)
+    }
+  }
+  </script>
+  <title>Light on / off </title>
+</head>
+
+<body>
+  <div class="align-center">
+    <table>
+      <tbody>
+        <tr>
+          <td>
+            <img id="image" src="img/on.jpg" width="50%">
+          </td>
+          <td>
+            <div class="div" id="timer">5</div>
+            <button class="button" onclick="toggleLight();">
+              on
+              <br>-
+              <br> off
+            </button>
+          </td>
+          <td>
+            <input type="text" id="setting">
+            <input type="button" value="預約關燈" onclick="timeSet();"></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+
+</html>
